@@ -1,23 +1,15 @@
 class Navicatmonitor < Formula
   desc "Navicat Monitor is a safe, simple and agentless remote server monitoring tool that is packed with powerful features to make your monitoring effective as possible."
   homepage "https://www.navicat.com/en/products#navicat-monitor"
-  url "https://navicat-download.oss-us-east-1.aliyuncs.com/monitor-download/homebrew/navicat-monitor_1.4.2.3.tar.gz"
-  sha256 "a2e13c575772aa7f861ec39ed96bff795548fe8a622fc4c65002901f8f3f6aa9"
+  url "https://navicat-download.oss-us-east-1.aliyuncs.com/monitor-download/homebrew/navicat-monitor_1.5.0.3.tar.gz"
+  sha256 "0c9019f1552cf67ec61efae02a2efde1e19dc99f6642d70af4e718ff7bd03a13"
 
   bottle :unneeded
 
-  depends_on "openssl"
-  depends_on "libyaml"
-  depends_on "libffi"
-  depends_on "readline"
-  depends_on "mysql"
-  depends_on "sqlite"
-  depends_on "postgresql"
-
   def install
-    # Install ruby gems
+    # Preload
     system "./install.sh"
-    libexec.install Dir["*", ".ruby"]
+    libexec.install Dir["*"]
 
     # Symlink var and tmp to persist across version update
     rm_rf "#{libexec}/var"
@@ -65,4 +57,3 @@ class Navicatmonitor < Formula
     system "#{bin}/navicatmonitor version"
   end
 end
-
